@@ -14,6 +14,12 @@ python3 manage.py runserver
 ```
 install postgres deps
 
-
+```shell
 python3 manage.py makemigrations
 python3 manage.py migrate
+```
+
+If you want to connect the the database, use
+```shell
+psql -h localhost -p 5432 -U postgres
+```
