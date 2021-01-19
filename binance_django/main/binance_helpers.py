@@ -8,7 +8,7 @@ from binance.client import Client
 from binance.websockets import BinanceSocketManager
 from twisted.internet import reactor
 
-from main.singleton import Singleton
+from .singleton import Singleton
 
 
 class TradePairs:
@@ -20,6 +20,7 @@ class TradePairs:
 
 class GetAssetBalances:
     """Show balances to operator, and try out python threads to get some performance"""
+
     def __init__(self):
         self.client = BinanceClient().client
         self._lock = threading.Lock()
@@ -43,6 +44,7 @@ class GetAssetBalances:
 
 class Order:
     """Make an order, help with timeouts and other boilerplate stuff"""
+
     def __init__(self, timeout=10, order=None):
         self._timeout = timeout
         self.order = order
@@ -66,6 +68,7 @@ class Order:
 
 class BinanceClient(metaclass=Singleton):
     """Single access point for binance client. Make it easier to split out more functionality"""
+
     def __init__(self):
         """Initialize Binance client"""
         print("init BinanceClient")
@@ -78,6 +81,7 @@ class BinanceClient(metaclass=Singleton):
 
 class Prices(metaclass=Singleton):
     """give access to prices in a centralized place, with pandas for analysis"""
+
     def __init__(self):
         print("init PandaPrices")
         self._init_datastructures()
@@ -94,6 +98,7 @@ class Prices(metaclass=Singleton):
 
     def _my_callback(self, trade_pair):
         """define how to process incoming WebSocket messages"""
+
         def symbol_ticker_callback(msg):
             if msg['e'] != 'error':
                 self.price[trade_pair].loc[len(self.price[trade_pair])] = [pd.Timestamp.now(), float(msg['c'])]
@@ -140,7 +145,8 @@ class Prices(metaclass=Singleton):
             while len(self.price[trade_pair]) == 0:
                 count += 1
                 if count == 1 or count % 50 == 0:
-                    print("Waiting for %s ticker to start streaming data. This normally takes less than 10 seconds" % trade_pair)
+                    print(
+                        "Waiting for %s ticker to start streaming data. This normally takes less than 10 seconds" % trade_pair)
                 time.sleep(0.1)
             print("%s ticker is streaming data" % trade_pair)
             self._handles[trade_pair] = symbol_ticker_handle
@@ -159,4 +165,3 @@ class Prices(metaclass=Singleton):
         except Exception as e:
             # TODO Error handling
             print(e)
-
