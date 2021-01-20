@@ -5,10 +5,9 @@ from django.template import loader
 
 
 def index(request):
-    client = BinanceClient().client
-    print(pformat(client.get_all_orders(symbol=TradePairs.ETHBUSD)))
-    return HttpResponse(
-        "Hello, world. You're at the main index. %s" % pformat(client.get_account()))
+    template = loader.get_template('main/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
 def get_account(request):

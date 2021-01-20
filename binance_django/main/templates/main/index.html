@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<li><a href="{% url 'get_account'  %}">get_account</a></li>
+
+{% if json_response %}
+<pre>
+JSON RESPONSE:
+
+    {{ json_response }}
+</pre>
+{% else %}
+<p>No json_response is available.</p>
+{% endif %}
+
+</body>
+</html>
