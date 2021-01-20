@@ -5,6 +5,9 @@
     <title>My test page</title>
 </head>
 <body>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
 
 <li><a href="{% url 'get_account'  %}">get_account</a></li>
 
