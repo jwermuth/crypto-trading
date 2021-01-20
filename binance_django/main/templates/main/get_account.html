@@ -1,7 +1,45 @@
-{% if account_info %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<head>
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+
+<table style="width:100%">
+    <caption>get_account</caption>
+    <tr>
+        <th>asset</th>
+        <th>free</th>
+        <th>locked</th>
+    </tr>
+    {% for balance in account_info.balances %}
+    <tr>
+        <td>{{ balance.asset }}</td>
+        <td>{{ balance.free }}</td>
+        <td>{{ balance.locked }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if json_response %}
 <pre>
-    {{ account_info }}
+JSON RESPONSE:
+
+    {{ json_response }}
 </pre>
 {% else %}
-<p>No account info is available.</p>
+<p>No json_response is available.</p>
 {% endif %}
+
+</body>
+</html>

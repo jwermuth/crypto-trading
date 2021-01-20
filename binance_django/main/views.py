@@ -15,5 +15,6 @@ def get_account(request):
     client = BinanceClient().client
 
     template = loader.get_template('main/get_account.html')
-    context = {'account_info': pformat(client.get_account())}
+    account = client.get_account()
+    context = {'json_response': pformat(account), 'account_info': account}
     return HttpResponse(template.render(context, request))
