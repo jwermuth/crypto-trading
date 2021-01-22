@@ -25,14 +25,20 @@ th, td {
         <th>free</th>
         <th>locked</th>
     </tr>
-    {% for balance in account_info.balances %}
+    {% for balance in account.balances %}
     <tr>
-        <td><a href="{% url 'get_asset_balance' balance.asset %}">{{ balance.asset }}</a></td>
+        <td><a href="{% url 'main:get_asset_balance' balance.asset %}">{{ balance.asset }}</a></td>
         <td>{{ balance.free }}</td>
         <td>{{ balance.locked }}</td>
     </tr>
     {% endfor %}
 </table>
+
+<form action="{% url 'main:save_account' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" id="account" name="account" value="{{account}}">
+    <input type="submit" value="Save">
+</form>
 
 {% if json_response %}
 <pre>
