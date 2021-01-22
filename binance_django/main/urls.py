@@ -8,4 +8,6 @@ urlpatterns = [
     path('accounts', views.get_account, name='get_account'),
     path('get_asset_balance/<str:asset>', views.get_access_balance, name='get_asset_balance'),
     # '<int:question_id>/vote/',
+    path('balances', views.get_account, name='get_account'),
+    path('balances/<str:asset>', views.get_access_balance, name='get_asset_balance'),
 ]
