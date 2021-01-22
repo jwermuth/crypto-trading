@@ -27,7 +27,7 @@ th, td {
     </tr>
     {% for balance in account_info.balances %}
     <tr>
-        <td>{{ balance.asset }}</td>
+        <td><a href="{% url 'get_asset_balance' balance.asset %}">{{ balance.asset }}</a></td>
         <td>{{ balance.free }}</td>
         <td>{{ balance.locked }}</td>
     </tr>
