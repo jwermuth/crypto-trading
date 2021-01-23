@@ -23,3 +23,9 @@ If you want to connect the the database, use
 ```shell
 psql -h localhost -p 5432 -U postgres
 ```
+
+## Running tests
+```shell
+source WHEREEVER YOUR BINANCE TEST CREDENTIALS ARE
+python3 manage.py test main
+```

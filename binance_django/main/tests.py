@@ -16,5 +16,5 @@ class GetAccountViewTests(TestCase):
         """
         Something responds at the index url
         """
-        response = self.client.get(reverse('main:balance'))
+        response = self.client.get(reverse('main:get_account'))
         self.assertEqual(response.status_code, 200)
