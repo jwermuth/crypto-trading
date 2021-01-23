@@ -21,6 +21,19 @@ def get_account(request):
     template = loader.get_template('main/get_account.html')
     account = client.get_account()
 
+#    last = Account.objects.last()
+#    if last is not None and last.updateTime != account.updateTime:
+#        new_account = Account(
+#            makerCommission=account['makerCommission'],
+#            takerCommission=account['takerCommission'],
+#            buyerCommission=account['buyerCommission'],
+#            sellerCommission=account['sellerCommission'],
+#            canTrade=account['canTrade'],
+#            canWithdraw=account['canWithdraw'],
+#            canDeposit=account['canDeposit'],
+#            updateTime=account['updateTime'])
+#        for balance in account.balances:
+
     context = {'json_response': str(account), 'account': account}
     return HttpResponse(template.render(context, request))
 
