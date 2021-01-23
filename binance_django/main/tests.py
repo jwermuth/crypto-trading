@@ -10,3 +10,11 @@ class MainIndexViewTests(TestCase):
         """
         response = self.client.get(reverse('main:index'))
         self.assertEqual(response.status_code, 200)
+
+class GetAccountViewTests(TestCase):
+    def test_is_present(self):
+        """
+        Something responds at the index url
+        """
+        response = self.client.get(reverse('main:balance'))
+        self.assertEqual(response.status_code, 200)
