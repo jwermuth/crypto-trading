@@ -14,4 +14,5 @@ urlpatterns = [
     path('balances', views.get_account, name='balances'),
     path('balances/<str:asset>', views.get_access_balance, name='get_asset_balance'),
     path('save_account', views.save_account, name='save_account'),
+
 ]

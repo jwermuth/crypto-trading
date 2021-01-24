@@ -2,6 +2,10 @@ import typing
 from django.db import models
 
 
+class GetAccount(models.Model):
+    data = models.JSONField(null=True)
+
+
 class Account(models.Model):
     makerCommission = models.FloatField()
     takerCommission = models.FloatField()

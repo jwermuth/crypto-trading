@@ -3,7 +3,7 @@ from django.urls import reverse
 from pprint import pformat
 from .binance_helpers import BinanceClient, TradePairs
 from django.template import loader
-from .models import Balance, Account
+from .models import Balance, Account, GetAccount
 import json
 from ast import literal_eval
 import pickle
@@ -51,6 +51,8 @@ def get_access_balance(request, asset):
 def save_account(request):
     print("save_account")
     account = request.POST['account']
+
+
     print(account)
     print(type(account))
 
@@ -58,6 +60,10 @@ def save_account(request):
     account = literal_eval(account)
     print(account)
     print(type(account))
+
+    # Also save as json to experiment with json later.
+    GetAccount.objects.create(data=account)
+
 
     account_model = Account.factory(account)
     print(account_model)
