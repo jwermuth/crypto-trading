@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-<body>
-
 <head>
     <meta charset="utf-8">
-    <title>My test page</title>
+    <title>get_account</title>
     <style>
 table, th, td {
   border: 1px solid black;
@@ -17,6 +15,8 @@ th, td {
 
     </style>
 </head>
+<body>
+{% include './include/header.html' %}
 
 <table style="width:100%">
     <caption>get_account</caption>
@@ -27,18 +27,14 @@ th, td {
     </tr>
     {% for balance in account.balances %}
     <tr>
-        <td><a href="{% url 'main:get_asset_balance' balance.asset %}">{{ balance.asset }}</a></td>
+        <td>{{ balance.asset }}</td>
         <td>{{ balance.free }}</td>
         <td>{{ balance.locked }}</td>
     </tr>
     {% endfor %}
 </table>
 
-<form action="{% url 'main:save_account' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" id="account" name="account" value="{{account}}">
-    <input type="submit" value="Save">
-</form>
+
 
 {% if json_response %}
 <pre>

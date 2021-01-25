@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>get_all_orders</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;
+        }
+    </style>
+</head>
+<body>
+{% include './include/header.html' %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %} : {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% for order in dict_response %}
+<pre>
+    {{ order|pprint}}
+</pre>
+{% if order.status != 'FILLED' and order.status != 'CANCELED' %}
+<a href="{% url 'main:cancel_order' symbol=order.symbol order_id=order.orderId %}">Cancel order</a>
+{% endif %}
+{% empty %}
+<li>Sorry, nothing in this list.</li>
+{% endfor %}
+
+</body>
+</html>

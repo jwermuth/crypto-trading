@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>create_order</title>
+</head>
+<body>
+{% include './include/header.html' %}
+{% load static %}
+
+<h1>Create order</h1>
+<p>{{message}}</p>
+<p>{{error_message}}</p>
+
+<form action="{% url 'main:create_order' %}" method="post">
+    {% csrf_token %}
+    <label for="symbol">symbol:</label><br>
+    <input type="text" id="symbol" name="symbol" value="ETHBUSD"><br>
+
+    <label for="side">side:</label><br>
+    <input type="text" id="side" name="side" value="BUY"><br>
+
+    <label for="typea">type:</label><br>
+    <input type="text" id="typea" name="typea" value="LIMIT"><br>
+
+    <label for="timeInForce">timeInForce:</label><br>
+    <input type="text" id="timeInForce" name="timeInForce" value="GTC"><br>
+
+    <label for="quantity">quantity:</label><br>
+    <input type="text" id="quantity" name="quantity" value="0.1"><br>
+
+    <label for="price">price:</label><br>
+    <input type="text" id="price" name="price"><br>
+
+    <input type="submit" value="Create order">
+</form>
+
+</body>
+</html>

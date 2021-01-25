@@ -1,9 +1,16 @@
 import typing
 from django.db import models
+from pprint import pformat
 
 
 class GetAccount(models.Model):
     data = models.JSONField(null=True)
+
+    def __str__(self):
+        return "get_account %i" % self.pk
+
+    def pformat_data(self):
+        return pformat(self.data)
 
 
 class Account(models.Model):
@@ -56,3 +63,28 @@ class Balance(models.Model):
 class Permission(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='permissions')
     permission = models.CharField(max_length=20)
+
+
+class CreateOrder(models.Model):
+    """
+    See also https://python-binance.readthedocs.io/en/latest/account.html#id2
+
+    Get data for:
+    order = client.create_order(
+    symbol='BNBBTC',
+    side=SIDE_BUY,
+    type=ORDER_TYPE_LIMIT,
+    timeInForce=TIME_IN_FORCE_GTC,
+    quantity=100,
+    price='0.00001')
+
+    """
+    symbol = models.CharField(max_length=6)
+    # See https://docs.djangoproject.com/en/3.1/topics/db/models/
+    side = models.TextChoices('Side', 'BUY')
+    type = models.TextChoices('Type', 'LIMIT')
+    timeInForce = models.TextChoices('timeInForce', 'GTC')
+    quantity = models.FloatField()
+    price = models.FloatField()
+
+

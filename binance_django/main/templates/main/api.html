@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>api</title>
+</head>
+<body>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+
+<li><a href="{% url 'main:create_order'    %}">create_order</a></li>
+<li><a href="{% url 'main:get_account'     %}">get_account</a></li>
+<li><a href="{% url 'main:get_all_orders' 'ETHBUSD' %}">get_all_orders (ETHBUSD)</a></li>
+<li><a href="{% url 'main:get_open_orders' 'ETHBUSD' %}">get_open_orders (ETHBUSD)</a></li>
+
+</body>
+</html>

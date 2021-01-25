@@ -5,11 +5,13 @@
     <title>My test page</title>
 </head>
 <body>
+{% include './include/header.html' %}
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
 
-<li><a href="{% url 'main:get_account'  %}">get_account</a></li>
+<li><a href="{% url 'main:get_accounts'  %}">get_account</a></li>
+<li><a href="{% url 'main:get_all_orders_tradepair' 'ETHBUSD' %}">get_all_orders ETH_BUSD</a></li>
 
 {% if json_response %}
 <pre>
